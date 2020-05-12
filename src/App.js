@@ -15,51 +15,6 @@ const MainWrapper = styled.section`
   grid-template-rows: 3.125rem auto;
 `
 
-// const Content = styled.section`
-//   grid-area: content;
-//   margin: 0 24px;
-//   display: flex;
-//   flex-direction: column;
-//   // background: linear-gradient(
-//   //   180deg,
-//   //   white,
-//   //   white 52px,
-//   //   #e5e5e5 52px,
-//   //   #e5e5e5 52px
-//   // );
-//   // background-size: 100% 53px;
-//   // box-shadow: inset 0 1px 0 0 #e5e5e5;
-// `
-
-// const HeaderContent = styled.div`
-//   font-size: 20px;
-//   color: #3e69e4;
-//   margin: 15px 0px;
-// `
-
-// const TasksList = styled.div`
-//   // grid-area: content;
-//   // margin: 0 24px;
-//   height: 100%;
-//   background: linear-gradient(
-//     180deg,
-//     white,
-//     white 52px,
-//     #e5e5e5 52px,
-//     #e5e5e5 52px
-//   );
-//   background-size: 100% 53px;
-//   box-shadow: inset 0 1px 0 0 #e5e5e5;
-//   // height: 100%;
-//   // overflow: hidden;
-// `
-
-// const TaskItem = styled.div`
-//   display: flex;
-//   align-items: center;
-//   min-height: 52px;
-// `
-
 const App = () => {
   return (
     <MainWrapper>

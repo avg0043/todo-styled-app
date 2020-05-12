@@ -41,14 +41,14 @@ const Aside = () => {
         <li>
           <ListItem>
             <StarIconStyled />
-            <p>Importante</p>
+            <p>Important</p>
             <Counter>1</Counter>
           </ListItem>
         </li>
         <li>
           <ListItem>
             <TasksIconStyled />
-            <p>Tareas</p>
+            <p>Tasks</p>
             <Counter>3</Counter>
           </ListItem>
         </li>
