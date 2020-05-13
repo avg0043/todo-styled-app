@@ -1,7 +1,6 @@
-import React, { useContext, useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
-import { TasksContext } from '../../TasksProvider'
-import { addTask, getTasks, removeTask } from '../../services/tasks'
+import PropTypes from 'prop-types'
 import { ReactComponent as TrashIcon } from '../../assets/icons/trash.svg'
 
 const MainWrapper = styled.section`
@@ -69,34 +68,26 @@ const ItemName = styled.div`
   display: flex;
 `
 
-const Content = () => {
-  const { state, dispatch } = useContext(TasksContext)
-  const tasks = getTasks(state)
-  const [taskName, setTaskName] = useState('')
-
-  const handleTaskNameChange = event => setTaskName(event.target.value)
-
-  const handleRemoveTask = taskId => () => dispatch(removeTask(taskId))
-
-  const handleFormSubmit = event => {
-    dispatch(addTask({ name: taskName }))
-    setTaskName('')
-    event.preventDefault()
-  }
-
+const Content = ({
+  tasks,
+  taskName,
+  onTaskNameChange,
+  onTaskRemove,
+  onFormSubmit,
+}) => {
   return (
     <MainWrapper>
       <Header>
         <HeaderTitle>
           <p>Tasks</p>
         </HeaderTitle>
-        <form onSubmit={handleFormSubmit}>
+        <form onSubmit={onFormSubmit}>
           <HeaderNewTask>
             <input
               type="text"
               value={taskName}
               placeholder="Type your new task"
-              onChange={handleTaskNameChange}
+              onChange={onTaskNameChange}
             />
             <HeaderAdd>Add task</HeaderAdd>
           </HeaderNewTask>
@@ -109,12 +100,20 @@ const Content = () => {
               <input type="checkbox" />
               <p>{name}</p>
             </ItemName>
-            <TrashIconStyled onClick={handleRemoveTask(id)} />
+            <TrashIconStyled onClick={onTaskRemove(id)} />
           </Item>
         ))}
       </Body>
     </MainWrapper>
   )
+}
+
+Content.propTypes = {
+  tasks: PropTypes.array.isRequired,
+  taskName: PropTypes.string.isRequired,
+  onTaskNameChange: PropTypes.func.isRequired,
+  onTaskRemove: PropTypes.func.isRequired,
+  onFormSubmit: PropTypes.func.isRequired,
 }
 
 export default Content
