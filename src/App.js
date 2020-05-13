@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import Content from './app/content/Content'
+import Aside from './app/aside/Aside'
 import Header from './ui/header/Header'
-import Aside from './ui/aside/Aside'
 
 const MainWrapper = styled.section`
   display: grid;

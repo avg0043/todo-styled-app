@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 import { ReactComponent as StarIcon } from '../../assets/icons/star.svg'
 import { ReactComponent as TasksIcon } from '../../assets/icons/tasks.svg'
 
@@ -34,7 +35,7 @@ const Counter = styled.p`
   margin-left: auto;
 `
 
-const Aside = () => {
+const Aside = ({ tasksCount }) => {
   return (
     <MainWrapper>
       <List>
@@ -42,19 +43,23 @@ const Aside = () => {
           <ListItem>
             <StarIconStyled />
             <p>Important</p>
-            <Counter>1</Counter>
+            <Counter>0</Counter>
           </ListItem>
         </li>
         <li>
           <ListItem>
             <TasksIconStyled />
             <p>Tasks</p>
-            <Counter>3</Counter>
+            <Counter>{tasksCount}</Counter>
           </ListItem>
         </li>
       </List>
     </MainWrapper>
   )
+}
+
+Aside.propTypes = {
+  tasksCount: PropTypes.number.isRequired,
 }
 
 export default Aside
