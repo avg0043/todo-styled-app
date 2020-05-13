@@ -1,7 +1,8 @@
 import React, { useContext } from 'react'
 import styled from 'styled-components'
 import { TasksContext } from '../../TasksProvider'
-import { addTask } from '../../services/tasks'
+import { addTask, getTasks } from '../../services/tasks'
+import { useState } from 'react'
 
 const MainWrapper = styled.section`
   grid-area: content;
@@ -56,25 +57,36 @@ const Item = styled.div`
 
 const Content = () => {
   const { state, dispatch } = useContext(TasksContext)
-  console.log(state)
+  const tasks = getTasks(state)
+  const [taskName, setTaskName] = useState('')
+
+  const handleTaskNameChange = event => setTaskName(event.target.value)
+
+  const handleAddTaskClick = () => dispatch(addTask({ name: taskName }))
 
   return (
     <MainWrapper>
-      <button onClick={() => dispatch(addTask({ name: 'Cleaning' }))}>+</button>
       <Header>
         <HeaderTitle>
           <p>Tasks</p>
         </HeaderTitle>
         <HeaderNewTask>
-          <input type="text" placeholder="Type your new task" />
-          <HeaderAdd>Add task</HeaderAdd>
+          <input
+            type="text"
+            value={taskName}
+            placeholder="Type your new task"
+            onChange={handleTaskNameChange}
+          />
+          <HeaderAdd onClick={handleAddTaskClick}>Add task</HeaderAdd>
         </HeaderNewTask>
       </Header>
       <Body>
-        <Item>
-          <p>[X]</p> {/* TODO: checkbox icon */}
-          <p>Go shopping</p>
-        </Item>
+        {tasks.map(({ name }, index) => (
+          <Item key={index}>
+            <p>[X]</p> {/* TODO: checkbox icon */}
+            <p>{name}</p>
+          </Item>
+        ))}
       </Body>
     </MainWrapper>
   )
