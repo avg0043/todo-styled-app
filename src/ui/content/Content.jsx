@@ -1,8 +1,8 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import styled from 'styled-components'
 import { TasksContext } from '../../TasksProvider'
-import { addTask, getTasks } from '../../services/tasks'
-import { useState } from 'react'
+import { addTask, getTasks, removeTask } from '../../services/tasks'
+import { ReactComponent as TrashIcon } from '../../assets/icons/trash.svg'
 
 const MainWrapper = styled.section`
   grid-area: content;
@@ -36,6 +36,15 @@ const HeaderAdd = styled.button`
   cursor: pointer;
 `
 
+const TrashIconStyled = styled(TrashIcon)`
+  width: 1.25rem;
+  height: 1.25rem;
+  cursor: pointer;
+  path {
+    fill: #bb0404;
+  }
+`
+
 const Body = styled.div`
   height: 100%;
   background: linear-gradient(
@@ -52,7 +61,12 @@ const Body = styled.div`
 const Item = styled.div`
   display: flex;
   align-items: center;
+  justify-content: space-between;
   min-height: 3.25rem;
+`
+
+const ItemName = styled.div`
+  display: flex;
 `
 
 const Content = () => {
@@ -62,7 +76,13 @@ const Content = () => {
 
   const handleTaskNameChange = event => setTaskName(event.target.value)
 
-  const handleAddTaskClick = () => dispatch(addTask({ name: taskName }))
+  const handleRemoveTask = taskId => () => dispatch(removeTask(taskId))
+
+  const handleFormSubmit = event => {
+    dispatch(addTask({ name: taskName }))
+    setTaskName('')
+    event.preventDefault()
+  }
 
   return (
     <MainWrapper>
@@ -70,21 +90,26 @@ const Content = () => {
         <HeaderTitle>
           <p>Tasks</p>
         </HeaderTitle>
-        <HeaderNewTask>
-          <input
-            type="text"
-            value={taskName}
-            placeholder="Type your new task"
-            onChange={handleTaskNameChange}
-          />
-          <HeaderAdd onClick={handleAddTaskClick}>Add task</HeaderAdd>
-        </HeaderNewTask>
+        <form onSubmit={handleFormSubmit}>
+          <HeaderNewTask>
+            <input
+              type="text"
+              value={taskName}
+              placeholder="Type your new task"
+              onChange={handleTaskNameChange}
+            />
+            <HeaderAdd>Add task</HeaderAdd>
+          </HeaderNewTask>
+        </form>
       </Header>
       <Body>
-        {tasks.map(({ name }, index) => (
-          <Item key={index}>
-            <p>[X]</p> {/* TODO: checkbox icon */}
-            <p>{name}</p>
+        {tasks.map(({ id, name }) => (
+          <Item key={id}>
+            <ItemName>
+              <input type="checkbox" />
+              <p>{name}</p>
+            </ItemName>
+            <TrashIconStyled onClick={handleRemoveTask(id)} />
           </Item>
         ))}
       </Body>
