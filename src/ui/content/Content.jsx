@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
+import { TasksContext } from '../../TasksProvider'
+import { addTask } from '../../services/tasks'
 
 const MainWrapper = styled.section`
   grid-area: content;
@@ -53,8 +55,12 @@ const Item = styled.div`
 `
 
 const Content = () => {
+  const { state, dispatch } = useContext(TasksContext)
+  console.log(state)
+
   return (
     <MainWrapper>
+      <button onClick={() => dispatch(addTask({ name: 'Cleaning' }))}>+</button>
       <Header>
         <HeaderTitle>
           <p>Tasks</p>
