@@ -39,11 +39,11 @@ const Body = styled.div`
     180deg,
     white,
     white 3.25rem,
-    #e5e5e5 3.25rem,
-    #e5e5e5 3.25rem
+    #dedede 3.25rem,
+    #dedede 3.25rem
   );
   background-size: 100% 3.3125rem;
-  box-shadow: inset 0 0.0625rem 0 0 #e5e5e5;
+  box-shadow: inset 0 0.0625rem 0 0 #dedede;
 `
 
 const Item = styled.div`
