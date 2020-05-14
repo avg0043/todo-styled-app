@@ -14,3 +14,8 @@ export const markCompletedTask = (id, isCompleted) => ({
   type: actionTypes.MARK_COMPLETED_TASK,
   payload: { id, isCompleted },
 })
+
+export const setMenuOption = menuOption => ({
+  type: actionTypes.SET_MENU_OPTION,
+  payload: { menuOption },
+})

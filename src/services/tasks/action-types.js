@@ -1,3 +1,4 @@
 export const ADD_TASK = 'ADD_TASK'
 export const REMOVE_TASK = 'REMOVE_TASK'
 export const MARK_COMPLETED_TASK = 'MARK_COMPLETED_TASK'
+export const SET_MENU_OPTION = 'SET_MENU_OPTION'
