@@ -1,7 +1,9 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import PropTypes from 'prop-types'
 import { ReactComponent as TrashIcon } from '../../assets/icons/trash.svg'
+import { ReactComponent as CheckboxIcon } from '../../assets/icons/checkbox.svg'
+import { ReactComponent as CheckboxCheckedIcon } from '../../assets/icons/checkbox_checked.svg'
 
 const MainWrapper = styled.section`
   grid-area: content;
@@ -16,8 +18,9 @@ const Header = styled.div`
 
 const HeaderTitle = styled.div`
   font-size: 1.25rem;
-  color: #3e69e4;
+  color: #63b7af;
   margin-bottom: 1.175rem;
+  font-weight: 800;
 `
 
 const HeaderNewTask = styled.div`
@@ -27,12 +30,17 @@ const HeaderNewTask = styled.div`
 `
 
 const HeaderAdd = styled.button`
-  background: #3e69e4;
-  font-size: white;
+  background: #ee8572;
+  font-size: 0.625rem;
+  font-weight: 700;
   color: white;
-  padding: 0.4375rem;
-  border-radius: 0.5rem;
+  padding: 0.625rem;
+  border-radius: 0.25rem;
   cursor: pointer;
+  text-transform: uppercase;
+  &:hover {
+    background: #d67463;
+  }
 `
 
 const TrashIconStyled = styled(TrashIcon)`
@@ -40,8 +48,26 @@ const TrashIconStyled = styled(TrashIcon)`
   height: 1.25rem;
   cursor: pointer;
   path {
-    fill: #bb0404;
+    fill: #bb3b0e;
   }
+`
+
+const checkboxStyle = css`
+  width: 1.25rem;
+  height: 1.25rem;
+  cursor: pointer;
+  margin-right: 0.6875rem;
+  path {
+    fill: #63b7af;
+  }
+`
+
+const CheckboxIconStyled = styled(CheckboxIcon)`
+  ${checkboxStyle}
+`
+
+const CheckboxCheckedIconStyled = styled(CheckboxCheckedIcon)`
+  ${checkboxStyle}
 `
 
 const Body = styled.div`
@@ -66,11 +92,14 @@ const Item = styled.div`
 
 const ItemName = styled.div`
   display: flex;
+  align-items: center;
 `
 
 const Content = ({
   tasks,
   taskName,
+  headerTitle,
+  showAddTask,
   onTaskNameChange,
   onTaskRemove,
   onTaskChecked,
@@ -80,29 +109,31 @@ const Content = ({
     <MainWrapper>
       <Header>
         <HeaderTitle>
-          <p>Tasks</p>
+          <p>{headerTitle}</p>
         </HeaderTitle>
-        <form onSubmit={onFormSubmit}>
-          <HeaderNewTask>
-            <input
-              type="text"
-              value={taskName}
-              placeholder="Type your new task"
-              onChange={onTaskNameChange}
-            />
-            <HeaderAdd>Add task</HeaderAdd>
-          </HeaderNewTask>
-        </form>
+        {showAddTask && (
+          <form onSubmit={onFormSubmit}>
+            <HeaderNewTask>
+              <input
+                type="text"
+                value={taskName}
+                placeholder="Type your new task"
+                onChange={onTaskNameChange}
+              />
+              <HeaderAdd>Add task</HeaderAdd>
+            </HeaderNewTask>
+          </form>
+        )}
       </Header>
       <Body>
         {tasks.map(({ id, name, completed }) => (
           <Item key={id}>
             <ItemName>
-              <input
-                type="checkbox"
-                checked={completed}
-                onChange={onTaskChecked(id)}
-              />
+              {completed ? (
+                <CheckboxCheckedIconStyled onClick={onTaskChecked(id, false)} />
+              ) : (
+                <CheckboxIconStyled onClick={onTaskChecked(id, true)} />
+              )}
               <p>{name}</p>
             </ItemName>
             <TrashIconStyled onClick={onTaskRemove(id)} />
@@ -116,6 +147,8 @@ const Content = ({
 Content.propTypes = {
   tasks: PropTypes.array.isRequired,
   taskName: PropTypes.string.isRequired,
+  headerTitle: PropTypes.string.isRequired,
+  showAddTask: PropTypes.bool.isRequired,
   onTaskNameChange: PropTypes.func.isRequired,
   onTaskRemove: PropTypes.func.isRequired,
   onTaskChecked: PropTypes.func.isRequired,

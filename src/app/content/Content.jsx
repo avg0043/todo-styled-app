@@ -22,8 +22,8 @@ const Content = () => {
 
   const handleRemoveTask = taskId => () => dispatch(removeTask(taskId))
 
-  const handleTaskChecked = taskId => event =>
-    dispatch(markCompletedTask(taskId, event.target.checked))
+  const handleTaskChecked = (taskId, checked) => () =>
+    dispatch(markCompletedTask(taskId, checked))
 
   const handleFormSubmit = event => {
     dispatch(addTask({ name: taskName }))
@@ -39,6 +39,10 @@ const Content = () => {
           : pendingTasks
       }
       taskName={taskName}
+      headerTitle={
+        selectedMenuOption === COMPLETED_MENU_OPTION ? 'Completed' : 'Tasks'
+      }
+      showAddTask={!(selectedMenuOption === COMPLETED_MENU_OPTION)}
       onTaskNameChange={handleTaskNameChange}
       onTaskRemove={handleRemoveTask}
       onTaskChecked={handleTaskChecked}

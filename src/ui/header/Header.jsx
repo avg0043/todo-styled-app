@@ -7,7 +7,7 @@ const MainWrapper = styled.header`
   justify-content: space-between;
   align-items: center;
   color: white;
-  background: #0078d7;
+  background: #63b7af;
   padding: 0 0.625rem;
 `
 

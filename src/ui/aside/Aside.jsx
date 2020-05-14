@@ -14,7 +14,7 @@ const isIconSelected = (name, selected_menu_option) =>
   name === selected_menu_option &&
   css`
     path {
-      fill: blue;
+      fill: #63b7af;
     }
   `
 
@@ -37,8 +37,8 @@ const ListItem = styled.div`
   ${({ name, selectedMenuOption }) =>
     name === selectedMenuOption &&
     css`
-      color: #3e69e4;
-      font-weight: 500;
+      color: #63b7af;
+      font-weight: 700;
     `}
 `
 
