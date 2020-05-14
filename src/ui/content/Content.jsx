@@ -4,6 +4,8 @@ import PropTypes from 'prop-types'
 import { ReactComponent as TrashIcon } from '../../assets/icons/trash.svg'
 import { ReactComponent as CheckboxIcon } from '../../assets/icons/checkbox.svg'
 import { ReactComponent as CheckboxCheckedIcon } from '../../assets/icons/checkbox_checked.svg'
+import { ReactComponent as StarIcon } from '../../assets/icons/star_big.svg'
+import { ReactComponent as StarFilledIcon } from '../../assets/icons/star_big_filled.svg'
 
 const MainWrapper = styled.section`
   grid-area: content;
@@ -43,6 +45,11 @@ const HeaderAdd = styled.button`
   }
 `
 
+const ItemActions = styled.div`
+  display: flex;
+  align-items: center;
+`
+
 const TrashIconStyled = styled(TrashIcon)`
   width: 1.25rem;
   height: 1.25rem;
@@ -60,6 +67,14 @@ const checkboxStyle = css`
   path {
     fill: #63b7af;
   }
+`
+
+const StarIconStyled = styled(StarIcon)`
+  ${checkboxStyle}
+`
+
+const StarFilledIconStyled = styled(StarFilledIcon)`
+  ${checkboxStyle}
 `
 
 const CheckboxIconStyled = styled(CheckboxIcon)`
@@ -103,6 +118,7 @@ const Content = ({
   onTaskNameChange,
   onTaskRemove,
   onTaskChecked,
+  onTaskImportantClick,
   onFormSubmit,
 }) => {
   return (
@@ -126,7 +142,7 @@ const Content = ({
         )}
       </Header>
       <Body>
-        {tasks.map(({ id, name, completed }) => (
+        {tasks.map(({ id, name, completed, important }) => (
           <Item key={id}>
             <ItemName>
               {completed ? (
@@ -136,7 +152,16 @@ const Content = ({
               )}
               <p>{name}</p>
             </ItemName>
-            <TrashIconStyled onClick={onTaskRemove(id)} />
+            <ItemActions>
+              {important ? (
+                <StarFilledIconStyled
+                  onClick={onTaskImportantClick(id, false)}
+                />
+              ) : (
+                <StarIconStyled onClick={onTaskImportantClick(id, true)} />
+              )}
+              <TrashIconStyled onClick={onTaskRemove(id)} />
+            </ItemActions>
           </Item>
         ))}
       </Body>
@@ -152,6 +177,7 @@ Content.propTypes = {
   onTaskNameChange: PropTypes.func.isRequired,
   onTaskRemove: PropTypes.func.isRequired,
   onTaskChecked: PropTypes.func.isRequired,
+  onTaskImportantClick: PropTypes.func.isRequired,
   onFormSubmit: PropTypes.func.isRequired,
 }
 

@@ -5,10 +5,15 @@ import {
   getPendingTasks,
   removeTask,
   markCompletedTask,
+  markImportantTask,
   getCompletedTasks,
   getSelectedMenuOption,
+  getImportantTasks,
 } from '../../services/tasks'
-import { COMPLETED_MENU_OPTION } from '../../common/constants'
+import {
+  COMPLETED_MENU_OPTION,
+  IMPORTANT_MENU_OPTION,
+} from '../../common/constants'
 import ContentUI from '../../ui/content/Content'
 
 const Content = () => {
@@ -16,14 +21,18 @@ const Content = () => {
   const selectedMenuOption = getSelectedMenuOption(state)
   const pendingTasks = getPendingTasks(state)
   const completedTasks = getCompletedTasks(state)
+  const importantTasks = getImportantTasks(state)
   const [taskName, setTaskName] = useState('')
 
   const handleTaskNameChange = event => setTaskName(event.target.value)
 
   const handleRemoveTask = taskId => () => dispatch(removeTask(taskId))
 
-  const handleTaskChecked = (taskId, checked) => () =>
-    dispatch(markCompletedTask(taskId, checked))
+  const handleTaskChecked = (taskId, isChecked) => () =>
+    dispatch(markCompletedTask(taskId, isChecked))
+
+  const handleTaskImportantClick = (taskId, isImportant) => () =>
+    dispatch(markImportantTask(taskId, isImportant))
 
   const handleFormSubmit = event => {
     dispatch(addTask({ name: taskName }))
@@ -31,21 +40,33 @@ const Content = () => {
     event.preventDefault()
   }
 
+  const getTasksToShow = () =>
+    selectedMenuOption === COMPLETED_MENU_OPTION
+      ? completedTasks
+      : selectedMenuOption === IMPORTANT_MENU_OPTION
+      ? importantTasks
+      : pendingTasks
+
+  const getHeaderTitle = () =>
+    selectedMenuOption === COMPLETED_MENU_OPTION
+      ? 'Completed'
+      : selectedMenuOption === IMPORTANT_MENU_OPTION
+      ? 'Important'
+      : 'Tasks'
+
+  const showAddTaskOption = () =>
+    ![COMPLETED_MENU_OPTION, IMPORTANT_MENU_OPTION].includes(selectedMenuOption)
+
   return (
     <ContentUI
-      tasks={
-        selectedMenuOption === COMPLETED_MENU_OPTION
-          ? completedTasks
-          : pendingTasks
-      }
+      tasks={getTasksToShow()}
       taskName={taskName}
-      headerTitle={
-        selectedMenuOption === COMPLETED_MENU_OPTION ? 'Completed' : 'Tasks'
-      }
-      showAddTask={!(selectedMenuOption === COMPLETED_MENU_OPTION)}
+      headerTitle={getHeaderTitle()}
+      showAddTask={showAddTaskOption()}
       onTaskNameChange={handleTaskNameChange}
       onTaskRemove={handleRemoveTask}
       onTaskChecked={handleTaskChecked}
+      onTaskImportantClick={handleTaskImportantClick}
       onFormSubmit={handleFormSubmit}
     />
   )

@@ -71,9 +71,10 @@ const Counter = styled.p`
 `
 
 const Aside = ({
+  selectedMenuOption,
   pendingTasks,
   completedTasksCount,
-  selectedMenuOption,
+  importantTasksCount,
   onMenuOptionClick,
 }) => {
   return (
@@ -90,7 +91,7 @@ const Aside = ({
               selected_menu_option={selectedMenuOption}
             />
             <p>Important</p>
-            <Counter>0</Counter>
+            <Counter>{importantTasksCount}</Counter>
           </ListItem>
         </li>
         <li>
@@ -127,9 +128,10 @@ const Aside = ({
 }
 
 Aside.propTypes = {
+  selectedMenuOption: PropTypes.string.isRequired,
   pendingTasks: PropTypes.number.isRequired,
   completedTasksCount: PropTypes.number.isRequired,
-  selectedMenuOption: PropTypes.string.isRequired,
+  importantTasksCount: PropTypes.number.isRequired,
   onMenuOptionClick: PropTypes.func.isRequired,
 }
 

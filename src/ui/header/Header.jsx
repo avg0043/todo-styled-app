@@ -22,11 +22,11 @@ const SearcherWrapper = styled.div`
 const Header = () => {
   return (
     <MainWrapper>
-      <p>To Do</p>
+      <p>TO-DO App</p>
       <SearcherWrapper>
         <input />
       </SearcherWrapper>
-      <p>Avatar icon</p>
+      <p>Álvaro Vázquez</p>
     </MainWrapper>
   )
 }

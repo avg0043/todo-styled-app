@@ -5,23 +5,26 @@ import {
   getCompletedTasks,
   getSelectedMenuOption,
   setMenuOption,
+  getImportantTasks,
 } from '../../services/tasks'
 import AsideUI from '../../ui/aside/Aside'
 
 const Aside = () => {
   const { state, dispatch } = useContext(TasksContext)
+  const selectedMenuOption = getSelectedMenuOption(state)
   const pendingTasks = getPendingTasks(state)
   const completedTasks = getCompletedTasks(state)
-  const selectedMenuOption = getSelectedMenuOption(state)
+  const importantTasks = getImportantTasks(state)
 
   const handleMenuOptionClick = selectedMenuOption => () =>
     dispatch(setMenuOption(selectedMenuOption))
 
   return (
     <AsideUI
+      selectedMenuOption={selectedMenuOption}
       pendingTasks={pendingTasks.length}
       completedTasksCount={completedTasks.length}
-      selectedMenuOption={selectedMenuOption}
+      importantTasksCount={importantTasks.length}
       onMenuOptionClick={handleMenuOptionClick}
     />
   )

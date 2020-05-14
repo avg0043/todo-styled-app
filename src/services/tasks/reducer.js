@@ -24,6 +24,15 @@ export default (state, { type, payload }) => {
       return R.assocPath([TASKS], newTasks, state)
     }
 
+    case actionTypes.MARK_IMPORTANT_TASK: {
+      const newTasks = state[TASKS].map(task =>
+        task.id === payload.id
+          ? { ...task, important: payload.isImportant }
+          : task,
+      )
+      return R.assocPath([TASKS], newTasks, state)
+    }
+
     case actionTypes.SET_MENU_OPTION: {
       return R.assocPath([MENU_SELECTED_OPTION], payload.menuOption, state)
     }
