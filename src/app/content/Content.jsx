@@ -2,15 +2,20 @@ import React, { useContext, useState } from 'react'
 import { TasksContext } from '../../TasksProvider'
 import {
   addTask,
-  getTasks,
+  getPendingTasks,
   removeTask,
   markCompletedTask,
+  getCompletedTasks,
+  getSelectedMenuOption,
 } from '../../services/tasks'
+import { COMPLETED_MENU_OPTION } from '../../common/constants'
 import ContentUI from '../../ui/content/Content'
 
 const Content = () => {
   const { state, dispatch } = useContext(TasksContext)
-  const tasks = getTasks(state)
+  const selectedMenuOption = getSelectedMenuOption(state)
+  const pendingTasks = getPendingTasks(state)
+  const completedTasks = getCompletedTasks(state)
   const [taskName, setTaskName] = useState('')
 
   const handleTaskNameChange = event => setTaskName(event.target.value)
@@ -28,7 +33,11 @@ const Content = () => {
 
   return (
     <ContentUI
-      tasks={tasks}
+      tasks={
+        selectedMenuOption === COMPLETED_MENU_OPTION
+          ? completedTasks
+          : pendingTasks
+      }
       taskName={taskName}
       onTaskNameChange={handleTaskNameChange}
       onTaskRemove={handleRemoveTask}

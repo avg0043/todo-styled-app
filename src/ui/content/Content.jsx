@@ -100,7 +100,7 @@ const Content = ({
             <ItemName>
               <input
                 type="checkbox"
-                value={completed}
+                checked={completed}
                 onChange={onTaskChecked(id)}
               />
               <p>{name}</p>

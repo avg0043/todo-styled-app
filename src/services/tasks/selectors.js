@@ -1,6 +1,7 @@
 import { TASKS, MENU_SELECTED_OPTION } from './constants'
 
-export const getTasks = state => state[TASKS]
+export const getPendingTasks = state =>
+  state[TASKS].filter(({ completed }) => !completed)
 
 export const getCompletedTasks = state =>
   state[TASKS].filter(({ completed }) => completed)

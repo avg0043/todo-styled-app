@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { TasksContext } from '../../TasksProvider'
 import {
-  getTasks,
+  getPendingTasks,
   getCompletedTasks,
   getSelectedMenuOption,
   setMenuOption,
@@ -10,7 +10,7 @@ import AsideUI from '../../ui/aside/Aside'
 
 const Aside = () => {
   const { state, dispatch } = useContext(TasksContext)
-  const tasks = getTasks(state)
+  const pendingTasks = getPendingTasks(state)
   const completedTasks = getCompletedTasks(state)
   const selectedMenuOption = getSelectedMenuOption(state)
 
@@ -19,7 +19,7 @@ const Aside = () => {
 
   return (
     <AsideUI
-      tasksCount={tasks.length}
+      pendingTasks={pendingTasks.length}
       completedTasksCount={completedTasks.length}
       selectedMenuOption={selectedMenuOption}
       onMenuOptionClick={handleMenuOptionClick}
