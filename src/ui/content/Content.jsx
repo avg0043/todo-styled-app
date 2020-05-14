@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled, { css } from 'styled-components'
 import PropTypes from 'prop-types'
 import { ReactComponent as TrashIcon } from '../../assets/icons/trash.svg'
@@ -110,17 +110,42 @@ const ItemName = styled.div`
   align-items: center;
 `
 
+const InformativeMessageWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  min-height: 3.25rem;
+  color: #63b7af;
+`
+
+const InformativeMessageTitle = styled.p`
+  font-style: oblique;
+  margin-right: 5px;
+`
+
+const Emoji = ({ symbol, label }) => <span aria-label={label}>{symbol}</span>
+
 const Content = ({
   tasks,
   taskName,
   headerTitle,
   showAddTask,
+  isTasksMenuOptionSelected,
   onTaskNameChange,
   onTaskRemove,
   onTaskChecked,
   onTaskImportantClick,
   onFormSubmit,
 }) => {
+  const [showInformativeMsg, setShowInformativeMsg] = useState(false)
+
+  const handleTaskChecked = (taskId, checked) => () => {
+    onTaskChecked(taskId, checked)
+    if (checked) {
+      setShowInformativeMsg(true)
+      setTimeout(() => setShowInformativeMsg(false), 2000)
+    }
+  }
+
   return (
     <MainWrapper>
       <Header>
@@ -146,9 +171,11 @@ const Content = ({
           <Item key={id}>
             <ItemName>
               {completed ? (
-                <CheckboxCheckedIconStyled onClick={onTaskChecked(id, false)} />
+                <CheckboxCheckedIconStyled
+                  onClick={handleTaskChecked(id, false)}
+                />
               ) : (
-                <CheckboxIconStyled onClick={onTaskChecked(id, true)} />
+                <CheckboxIconStyled onClick={handleTaskChecked(id, true)} />
               )}
               <p>{name}</p>
             </ItemName>
@@ -164,6 +191,16 @@ const Content = ({
             </ItemActions>
           </Item>
         ))}
+        {showInformativeMsg && isTasksMenuOptionSelected && (
+          <>
+            <InformativeMessageWrapper>
+              <InformativeMessageTitle>
+                The task has been moved to the "Completed" section
+              </InformativeMessageTitle>
+              <Emoji label="sheep" symbol="😊" />
+            </InformativeMessageWrapper>
+          </>
+        )}
       </Body>
     </MainWrapper>
   )
@@ -174,6 +211,7 @@ Content.propTypes = {
   taskName: PropTypes.string.isRequired,
   headerTitle: PropTypes.string.isRequired,
   showAddTask: PropTypes.bool.isRequired,
+  isTasksMenuOptionSelected: PropTypes.bool.isRequired,
   onTaskNameChange: PropTypes.func.isRequired,
   onTaskRemove: PropTypes.func.isRequired,
   onTaskChecked: PropTypes.func.isRequired,

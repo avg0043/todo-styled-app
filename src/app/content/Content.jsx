@@ -13,6 +13,7 @@ import {
 import {
   COMPLETED_MENU_OPTION,
   IMPORTANT_MENU_OPTION,
+  TASKS_MENU_OPTION,
 } from '../../common/constants'
 import ContentUI from '../../ui/content/Content'
 
@@ -28,7 +29,7 @@ const Content = () => {
 
   const handleRemoveTask = taskId => () => dispatch(removeTask(taskId))
 
-  const handleTaskChecked = (taskId, isChecked) => () =>
+  const handleTaskChecked = (taskId, isChecked) =>
     dispatch(markCompletedTask(taskId, isChecked))
 
   const handleTaskImportantClick = (taskId, isImportant) => () =>
@@ -63,9 +64,10 @@ const Content = () => {
       taskName={taskName}
       headerTitle={getHeaderTitle()}
       showAddTask={showAddTaskOption()}
+      isTasksMenuOptionSelected={selectedMenuOption === TASKS_MENU_OPTION}
       onTaskNameChange={handleTaskNameChange}
       onTaskRemove={handleRemoveTask}
-      onTaskChecked={handleTaskChecked}
+      onTaskChecked={handleTaskChecked} // TODO: rename to onTaskCompletedChange
       onTaskImportantClick={handleTaskImportantClick}
       onFormSubmit={handleFormSubmit}
     />
