@@ -9,3 +9,8 @@ export const removeTask = id => ({
   type: actionTypes.REMOVE_TASK,
   payload: { id },
 })
+
+export const markCompletedTask = (id, isCompleted) => ({
+  type: actionTypes.MARK_COMPLETED_TASK,
+  payload: { id, isCompleted },
+})

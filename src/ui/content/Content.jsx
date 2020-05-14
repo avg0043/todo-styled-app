@@ -73,6 +73,7 @@ const Content = ({
   taskName,
   onTaskNameChange,
   onTaskRemove,
+  onTaskChecked,
   onFormSubmit,
 }) => {
   return (
@@ -94,10 +95,14 @@ const Content = ({
         </form>
       </Header>
       <Body>
-        {tasks.map(({ id, name }) => (
+        {tasks.map(({ id, name, completed }) => (
           <Item key={id}>
             <ItemName>
-              <input type="checkbox" />
+              <input
+                type="checkbox"
+                value={completed}
+                onChange={onTaskChecked(id)}
+              />
               <p>{name}</p>
             </ItemName>
             <TrashIconStyled onClick={onTaskRemove(id)} />
@@ -113,6 +118,7 @@ Content.propTypes = {
   taskName: PropTypes.string.isRequired,
   onTaskNameChange: PropTypes.func.isRequired,
   onTaskRemove: PropTypes.func.isRequired,
+  onTaskChecked: PropTypes.func.isRequired,
   onFormSubmit: PropTypes.func.isRequired,
 }
 
