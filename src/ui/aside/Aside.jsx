@@ -2,7 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { ReactComponent as StarIcon } from '../../assets/icons/star.svg'
-import { ReactComponent as TasksIcon } from '../../assets/icons/tasks.svg'
+import { ReactComponent as ListIcon } from '../../assets/icons/list.svg'
+import { ReactComponent as CompletedIcon } from '../../assets/icons/completed.svg'
 
 const MainWrapper = styled.aside`
   grid-area: aside;
@@ -11,31 +12,40 @@ const MainWrapper = styled.aside`
 `
 
 const List = styled.ul`
-  margin: 0.625rem 1.5rem;
+  margin: 0.625rem 1rem;
   list-style: none;
+  line-height: 2.5rem;
 `
 
 const ListItem = styled.div`
   display: flex;
   align-items: center;
+  cursor: pointer;
 `
 
 const StarIconStyled = styled(StarIcon)`
   width: 0.9375rem;
+  height: 1.0625rem;
   margin-right: 0.4375rem;
 `
 
-const TasksIconStyled = styled(TasksIcon)`
-  width: 0.75rem;
+const ListIconStyled = styled(ListIcon)`
+  width: 0.9375rem;
+  height: 0.9375rem;
   margin-right: 0.4375rem;
-  margin-left: 0.125rem;
+`
+
+const CompletedIconStyled = styled(CompletedIcon)`
+  width: 0.9375rem;
+  height: 0.9375rem;
+  margin-right: 0.4375rem;
 `
 
 const Counter = styled.p`
   margin-left: auto;
 `
 
-const Aside = ({ tasksCount }) => {
+const Aside = ({ tasksCount, completedTasksCount }) => {
   return (
     <MainWrapper>
       <List>
@@ -48,9 +58,16 @@ const Aside = ({ tasksCount }) => {
         </li>
         <li>
           <ListItem>
-            <TasksIconStyled />
+            <ListIconStyled />
             <p>Tasks</p>
             <Counter>{tasksCount}</Counter>
+          </ListItem>
+        </li>
+        <li>
+          <ListItem>
+            <CompletedIconStyled />
+            <p>Completed</p>
+            <Counter>{completedTasksCount}</Counter>
           </ListItem>
         </li>
       </List>
@@ -60,6 +77,7 @@ const Aside = ({ tasksCount }) => {
 
 Aside.propTypes = {
   tasksCount: PropTypes.number.isRequired,
+  completedTasksCount: PropTypes.number.isRequired,
 }
 
 export default Aside
