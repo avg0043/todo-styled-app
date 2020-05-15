@@ -27,9 +27,9 @@ const Content = () => {
 
   const handleTaskNameChange = event => setTaskName(event.target.value)
 
-  const handleRemoveTask = taskId => () => dispatch(removeTask(taskId))
+  const handleRemoveTaskClick = taskId => () => dispatch(removeTask(taskId))
 
-  const handleTaskChecked = (taskId, isChecked) =>
+  const handleTaskCompleteClick = (taskId, isChecked) =>
     dispatch(markCompletedTask(taskId, isChecked))
 
   const handleTaskImportantClick = (taskId, isImportant) => () =>
@@ -66,8 +66,8 @@ const Content = () => {
       showAddTask={showAddTaskOption()}
       isTasksMenuOptionSelected={selectedMenuOption === TASKS_MENU_OPTION}
       onTaskNameChange={handleTaskNameChange}
-      onTaskRemove={handleRemoveTask}
-      onTaskChecked={handleTaskChecked} // TODO: rename to onTaskCompletedChange
+      onTaskRemoveClick={handleRemoveTaskClick}
+      onTaskCompleteClick={handleTaskCompleteClick}
       onTaskImportantClick={handleTaskImportantClick}
       onFormSubmit={handleFormSubmit}
     />

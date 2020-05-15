@@ -1,74 +1,19 @@
 import React from 'react'
-import styled, { css } from 'styled-components'
 import PropTypes from 'prop-types'
 import {
   IMPORTANT_MENU_OPTION,
   TASKS_MENU_OPTION,
   COMPLETED_MENU_OPTION,
 } from '../../common/constants'
-import { ReactComponent as StarIcon } from '../../assets/icons/star.svg'
-import { ReactComponent as ListIcon } from '../../assets/icons/list.svg'
-import { ReactComponent as CompletedIcon } from '../../assets/icons/completed.svg'
-
-const isIconSelected = (name, selected_menu_option) =>
-  name === selected_menu_option &&
-  css`
-    path {
-      fill: #63b7af;
-    }
-  `
-
-const MainWrapper = styled.aside`
-  grid-area: aside;
-  background: #d0cdcd7d;
-  border-right: 0.0625rem solid #e5e5e5;
-`
-
-const List = styled.ul`
-  margin: 0.625rem 1rem;
-  list-style: none;
-  line-height: 2.5rem;
-`
-
-const ListItem = styled.div`
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  ${({ name, selectedMenuOption }) =>
-    name === selectedMenuOption &&
-    css`
-      color: #63b7af;
-      font-weight: 700;
-    `}
-`
-
-const StarIconStyled = styled(StarIcon)`
-  width: 0.9375rem;
-  height: 1.0625rem;
-  margin-right: 0.4375rem;
-  ${({ name, selected_menu_option }) =>
-    isIconSelected(name, selected_menu_option)}
-`
-
-const ListIconStyled = styled(ListIcon)`
-  width: 0.9375rem;
-  height: 0.9375rem;
-  margin-right: 0.4375rem;
-  ${({ name, selected_menu_option }) =>
-    isIconSelected(name, selected_menu_option)}
-`
-
-const CompletedIconStyled = styled(CompletedIcon)`
-  width: 0.9375rem;
-  height: 0.9375rem;
-  margin-right: 0.4375rem;
-  ${({ name, selected_menu_option }) =>
-    isIconSelected(name, selected_menu_option)}
-`
-
-const Counter = styled.p`
-  margin-left: auto;
-`
+import {
+  MainWrapper,
+  List,
+  ListItem,
+  StarIconStyled,
+  Counter,
+  ListIconStyled,
+  CompletedIconStyled,
+} from './AsideStyles'
 
 const Aside = ({
   selectedMenuOption,
