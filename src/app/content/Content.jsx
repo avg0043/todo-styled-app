@@ -9,6 +9,7 @@ import {
   getCompletedTasks,
   getSelectedMenuOption,
   getImportantTasks,
+  getSearcherValue,
 } from '../../services/tasks'
 import {
   COMPLETED_MENU_OPTION,
@@ -23,6 +24,7 @@ const Content = () => {
   const pendingTasks = getPendingTasks(state)
   const completedTasks = getCompletedTasks(state)
   const importantTasks = getImportantTasks(state)
+  const searcherValue = getSearcherValue(state)
   const [taskName, setTaskName] = useState('')
 
   const handleTaskNameChange = event => setTaskName(event.target.value)
