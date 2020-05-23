@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react'
+import * as R from 'ramda'
 import { TasksContext } from '../../TasksProvider'
 import {
   addTask,
@@ -17,6 +18,8 @@ import {
   TASKS_MENU_OPTION,
 } from '../../common/constants'
 import ContentUI from '../../ui/content/Content'
+
+const removeBlankSpaces = text => R.replace(/\s/g, '', text)
 
 const Content = () => {
   const { state, dispatch } = useContext(TasksContext)
@@ -51,7 +54,9 @@ const Content = () => {
       : pendingTasks
 
   const getHeaderTitle = () =>
-    selectedMenuOption === COMPLETED_MENU_OPTION
+    removeBlankSpaces(searcherValue)
+      ? `Searching "${searcherValue}"`
+      : selectedMenuOption === COMPLETED_MENU_OPTION
       ? 'Completed'
       : selectedMenuOption === IMPORTANT_MENU_OPTION
       ? 'Important'

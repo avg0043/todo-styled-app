@@ -11,4 +11,4 @@ export const getImportantTasks = state =>
 
 export const getSelectedMenuOption = state => state[MENU_SELECTED_OPTION]
 
-export const getSearcherValue = state => state[SEARCHER_VALUE]
+export const getSearcherValue = state => state[SEARCHER_VALUE] || ''
