@@ -9,20 +9,25 @@ import {
   getCompletedTasks,
   getSelectedMenuOption,
   getImportantTasks,
+  getSearcherValue,
+  getSearcherTasks,
 } from '../../services/tasks'
 import {
   COMPLETED_MENU_OPTION,
   IMPORTANT_MENU_OPTION,
   TASKS_MENU_OPTION,
 } from '../../common/constants'
+import isEmptyString from '../../utils/isEmptyString'
 import ContentUI from '../../ui/content/Content'
 
 const Content = () => {
   const { state, dispatch } = useContext(TasksContext)
   const selectedMenuOption = getSelectedMenuOption(state)
+  const searcherValue = getSearcherValue(state)
   const pendingTasks = getPendingTasks(state)
   const completedTasks = getCompletedTasks(state)
   const importantTasks = getImportantTasks(state)
+  const searcherTasks = getSearcherTasks(state)
   const [taskName, setTaskName] = useState('')
 
   const handleTaskNameChange = event => setTaskName(event.target.value)
@@ -42,20 +47,25 @@ const Content = () => {
   }
 
   const getTasksToShow = () =>
-    selectedMenuOption === COMPLETED_MENU_OPTION
+    !isEmptyString(searcherValue)
+      ? searcherTasks
+      : selectedMenuOption === COMPLETED_MENU_OPTION
       ? completedTasks
       : selectedMenuOption === IMPORTANT_MENU_OPTION
       ? importantTasks
       : pendingTasks
 
   const getHeaderTitle = () =>
-    selectedMenuOption === COMPLETED_MENU_OPTION
+    !isEmptyString(searcherValue)
+      ? `Searching "${searcherValue}"`
+      : selectedMenuOption === COMPLETED_MENU_OPTION
       ? 'Completed'
       : selectedMenuOption === IMPORTANT_MENU_OPTION
       ? 'Important'
       : 'Tasks'
 
   const showAddTaskOption = () =>
+    isEmptyString(searcherValue) &&
     ![COMPLETED_MENU_OPTION, IMPORTANT_MENU_OPTION].includes(selectedMenuOption)
 
   return (

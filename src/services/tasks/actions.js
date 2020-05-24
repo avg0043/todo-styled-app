@@ -24,3 +24,8 @@ export const setMenuOption = menuOption => ({
   type: actionTypes.SET_MENU_OPTION,
   payload: { menuOption },
 })
+
+export const setSearcherValue = searcherValue => ({
+  type: actionTypes.SET_SEARCHER_VALUE,
+  payload: { searcherValue },
+})
