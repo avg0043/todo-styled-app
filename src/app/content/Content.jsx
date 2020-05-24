@@ -1,5 +1,4 @@
 import React, { useContext, useState } from 'react'
-import * as R from 'ramda'
 import { TasksContext } from '../../TasksProvider'
 import {
   addTask,
@@ -11,23 +10,24 @@ import {
   getSelectedMenuOption,
   getImportantTasks,
   getSearcherValue,
+  getSearcherTasks,
 } from '../../services/tasks'
 import {
   COMPLETED_MENU_OPTION,
   IMPORTANT_MENU_OPTION,
   TASKS_MENU_OPTION,
 } from '../../common/constants'
+import isEmptyString from '../../utils/isEmptyString'
 import ContentUI from '../../ui/content/Content'
-
-const removeBlankSpaces = text => R.replace(/\s/g, '', text)
 
 const Content = () => {
   const { state, dispatch } = useContext(TasksContext)
   const selectedMenuOption = getSelectedMenuOption(state)
+  const searcherValue = getSearcherValue(state)
   const pendingTasks = getPendingTasks(state)
   const completedTasks = getCompletedTasks(state)
   const importantTasks = getImportantTasks(state)
-  const searcherValue = getSearcherValue(state)
+  const searcherTasks = getSearcherTasks(state)
   const [taskName, setTaskName] = useState('')
 
   const handleTaskNameChange = event => setTaskName(event.target.value)
@@ -47,14 +47,16 @@ const Content = () => {
   }
 
   const getTasksToShow = () =>
-    selectedMenuOption === COMPLETED_MENU_OPTION
+    !isEmptyString(searcherValue)
+      ? searcherTasks
+      : selectedMenuOption === COMPLETED_MENU_OPTION
       ? completedTasks
       : selectedMenuOption === IMPORTANT_MENU_OPTION
       ? importantTasks
       : pendingTasks
 
   const getHeaderTitle = () =>
-    removeBlankSpaces(searcherValue)
+    !isEmptyString(searcherValue)
       ? `Searching "${searcherValue}"`
       : selectedMenuOption === COMPLETED_MENU_OPTION
       ? 'Completed'
@@ -63,6 +65,7 @@ const Content = () => {
       : 'Tasks'
 
   const showAddTaskOption = () =>
+    isEmptyString(searcherValue) &&
     ![COMPLETED_MENU_OPTION, IMPORTANT_MENU_OPTION].includes(selectedMenuOption)
 
   return (
