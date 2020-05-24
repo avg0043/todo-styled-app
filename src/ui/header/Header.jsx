@@ -6,6 +6,7 @@ import {
   UserInfoWrapper,
   UserTitle,
   UserIconStyled,
+  SearcherIconStyled,
 } from './HeaderStyles'
 
 const Header = ({ searcherValue, onSearcherChange }) => {
@@ -13,7 +14,13 @@ const Header = ({ searcherValue, onSearcherChange }) => {
     <MainWrapper>
       <p>To Do</p>
       <SearcherWrapper>
-        <input type="text" value={searcherValue} onChange={onSearcherChange} />
+        <SearcherIconStyled />
+        <input
+          type="text"
+          value={searcherValue}
+          placeholder="Search any task..."
+          onChange={onSearcherChange}
+        />
       </SearcherWrapper>
       <UserInfoWrapper>
         <UserTitle>Álvaro Vázquez</UserTitle>
