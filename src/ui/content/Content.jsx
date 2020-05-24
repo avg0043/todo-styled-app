@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import Emoji from '../emoji/Emoji'
+import isEmptyString from '../../utils/isEmptyString'
 import {
   MainWrapper,
   Header,
@@ -57,7 +58,7 @@ const Content = ({
                 placeholder="Type your new task"
                 onChange={onTaskNameChange}
               />
-              <HeaderAdd>Add task</HeaderAdd>
+              <HeaderAdd disabled={isEmptyString(taskName)}>Add task</HeaderAdd>
             </HeaderNewTask>
           </form>
         )}

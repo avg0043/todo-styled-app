@@ -51,6 +51,10 @@ export const HeaderAdd = styled.button`
   &:hover {
     background: #d67463;
   }
+  &:disabled {
+    pointer-events: none;
+    background-color: rgba(214, 116, 99, 0.6);
+  }
 `
 
 export const ItemActions = styled.div`
