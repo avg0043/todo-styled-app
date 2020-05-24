@@ -13,6 +13,7 @@ import {
   Counter,
   ListIconStyled,
   CompletedIconStyled,
+  ItemTitle,
 } from './AsideStyles'
 
 const Aside = ({
@@ -35,7 +36,7 @@ const Aside = ({
               name={IMPORTANT_MENU_OPTION}
               selected_menu_option={selectedMenuOption}
             />
-            <p>Important</p>
+            <ItemTitle>Important</ItemTitle>
             <Counter>{importantTasksCount}</Counter>
           </ListItem>
         </li>
@@ -49,7 +50,7 @@ const Aside = ({
               name={TASKS_MENU_OPTION}
               selected_menu_option={selectedMenuOption}
             />
-            <p>Tasks</p>
+            <ItemTitle>Tasks</ItemTitle>
             <Counter>{pendingTasks}</Counter>
           </ListItem>
         </li>
@@ -63,7 +64,7 @@ const Aside = ({
               name={COMPLETED_MENU_OPTION}
               selected_menu_option={selectedMenuOption}
             />
-            <p>Completed</p>
+            <ItemTitle>Completed</ItemTitle>
             <Counter>{completedTasksCount}</Counter>
           </ListItem>
         </li>
