@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components'
 
+import { ReactComponent as MenuIcon } from '../../assets/icons/menu.svg'
 import { ReactComponent as StarIcon } from '../../assets/icons/star.svg'
 import { ReactComponent as ListIcon } from '../../assets/icons/list.svg'
 import { ReactComponent as CompletedIcon } from '../../assets/icons/completed.svg'
@@ -50,6 +51,16 @@ export const ListItem = styled.div`
       color: #63b7af;
       font-weight: 700;
     `}
+`
+
+export const MenuIconStyled = styled(MenuIcon)`
+  height: 1.1625rem;
+  width: 1.9375rem;
+  padding: 1.025rem 0 0.5rem 0.5rem;
+  cursor: pointer;
+  path {
+    fill: #63b7af;
+  }
 `
 
 export const StarIconStyled = styled(StarIcon)`

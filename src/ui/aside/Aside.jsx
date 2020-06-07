@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import {
   IMPORTANT_MENU_OPTION,
@@ -14,6 +14,7 @@ import {
   ListIconStyled,
   CompletedIconStyled,
   ItemTitle,
+  MenuIconStyled,
 } from './AsideStyles'
 
 const Aside = ({
@@ -23,8 +24,13 @@ const Aside = ({
   importantTasksCount,
   onMenuOptionClick,
 }) => {
+  const [isOpen, setIsOpen] = useState(true)
+
+  const handleMenuIconClick = () => setIsOpen(isOpen => !isOpen)
+
   return (
     <MainWrapper>
+      <MenuIconStyled onClick={handleMenuIconClick} />
       <List>
         <li>
           <ListItem
