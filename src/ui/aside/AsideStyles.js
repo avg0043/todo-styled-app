@@ -31,19 +31,11 @@ export const MainWrapper = styled.aside`
 export const List = styled.ul`
   list-style: none;
   line-height: 2.5rem;
-  padding: 0.625rem 0;
-
-  @media (min-width: 768px) {
-    padding: 0.625rem 1rem;
-  }
+  padding: 0.625rem 1rem;
 `
 
 export const ListItem = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
   cursor: pointer;
-  min-height: 2.5rem;
 
   ${({ name, selectedMenuOption }) =>
     name === selectedMenuOption &&
@@ -51,6 +43,19 @@ export const ListItem = styled.div`
       color: #63b7af;
       font-weight: 700;
     `}
+
+  @media (min-width: 768px) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+`
+
+export const ItemTitleWrapper = styled.div`
+  @media (min-width: 768px) {
+    display: flex;
+    align-items: center;
+  }
 `
 
 export const MenuIconStyled = styled(MenuIcon)`

@@ -15,6 +15,7 @@ import {
   CompletedIconStyled,
   ItemTitle,
   MenuIconStyled,
+  ItemTitleWrapper,
 } from './AsideStyles'
 
 const Aside = ({
@@ -26,7 +27,7 @@ const Aside = ({
 }) => {
   const [isOpen, setIsOpen] = useState(true)
 
-  const handleMenuIconClick = () => setIsOpen(isOpen => !isOpen)
+  const handleMenuIconClick = () => setIsOpen(!isOpen)
 
   return (
     <MainWrapper>
@@ -38,11 +39,13 @@ const Aside = ({
             selectedMenuOption={selectedMenuOption}
             onClick={onMenuOptionClick(IMPORTANT_MENU_OPTION)}
           >
-            <StarIconStyled
-              name={IMPORTANT_MENU_OPTION}
-              selected_menu_option={selectedMenuOption}
-            />
-            <ItemTitle>Important</ItemTitle>
+            <ItemTitleWrapper>
+              <StarIconStyled
+                name={IMPORTANT_MENU_OPTION}
+                selected_menu_option={selectedMenuOption}
+              />
+              <ItemTitle>Important</ItemTitle>
+            </ItemTitleWrapper>
             <Counter>{importantTasksCount}</Counter>
           </ListItem>
         </li>
