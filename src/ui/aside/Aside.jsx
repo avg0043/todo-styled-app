@@ -14,6 +14,8 @@ import {
   ListIconStyled,
   CompletedIconStyled,
   ItemTitle,
+  MenuIconStyled,
+  ItemTitleWrapper,
 } from './AsideStyles'
 
 const Aside = ({
@@ -21,10 +23,13 @@ const Aside = ({
   pendingTasks,
   completedTasksCount,
   importantTasksCount,
+  isMenuOpen,
   onMenuOptionClick,
+  onMenuIconClick,
 }) => {
   return (
-    <MainWrapper>
+    <MainWrapper isMenuOpen={isMenuOpen}>
+      <MenuIconStyled onClick={onMenuIconClick} />
       <List>
         <li>
           <ListItem
@@ -32,12 +37,14 @@ const Aside = ({
             selectedMenuOption={selectedMenuOption}
             onClick={onMenuOptionClick(IMPORTANT_MENU_OPTION)}
           >
-            <StarIconStyled
-              name={IMPORTANT_MENU_OPTION}
-              selected_menu_option={selectedMenuOption}
-            />
-            <ItemTitle>Important</ItemTitle>
-            <Counter>{importantTasksCount}</Counter>
+            <ItemTitleWrapper>
+              <StarIconStyled
+                name={IMPORTANT_MENU_OPTION}
+                selected_menu_option={selectedMenuOption}
+              />
+              <ItemTitle isMenuOpen={isMenuOpen}>Important</ItemTitle>
+            </ItemTitleWrapper>
+            <Counter isMenuOpen={isMenuOpen}>{importantTasksCount}</Counter>
           </ListItem>
         </li>
         <li>
@@ -46,12 +53,14 @@ const Aside = ({
             selectedMenuOption={selectedMenuOption}
             onClick={onMenuOptionClick(TASKS_MENU_OPTION)}
           >
-            <ListIconStyled
-              name={TASKS_MENU_OPTION}
-              selected_menu_option={selectedMenuOption}
-            />
-            <ItemTitle>Tasks</ItemTitle>
-            <Counter>{pendingTasks}</Counter>
+            <ItemTitleWrapper>
+              <ListIconStyled
+                name={TASKS_MENU_OPTION}
+                selected_menu_option={selectedMenuOption}
+              />
+              <ItemTitle isMenuOpen={isMenuOpen}>Tasks</ItemTitle>
+            </ItemTitleWrapper>
+            <Counter isMenuOpen={isMenuOpen}>{pendingTasks}</Counter>
           </ListItem>
         </li>
         <li>
@@ -60,12 +69,14 @@ const Aside = ({
             selectedMenuOption={selectedMenuOption}
             onClick={onMenuOptionClick(COMPLETED_MENU_OPTION)}
           >
-            <CompletedIconStyled
-              name={COMPLETED_MENU_OPTION}
-              selected_menu_option={selectedMenuOption}
-            />
-            <ItemTitle>Completed</ItemTitle>
-            <Counter>{completedTasksCount}</Counter>
+            <ItemTitleWrapper>
+              <CompletedIconStyled
+                name={COMPLETED_MENU_OPTION}
+                selected_menu_option={selectedMenuOption}
+              />
+              <ItemTitle isMenuOpen={isMenuOpen}>Completed</ItemTitle>
+            </ItemTitleWrapper>
+            <Counter isMenuOpen={isMenuOpen}>{completedTasksCount}</Counter>
           </ListItem>
         </li>
       </List>
@@ -78,7 +89,9 @@ Aside.propTypes = {
   pendingTasks: PropTypes.number.isRequired,
   completedTasksCount: PropTypes.number.isRequired,
   importantTasksCount: PropTypes.number.isRequired,
+  isMenuOpen: PropTypes.bool.isRequired,
   onMenuOptionClick: PropTypes.func.isRequired,
+  onMenuIconClick: PropTypes.func.isRequired,
 }
 
 export default Aside

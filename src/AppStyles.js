@@ -1,16 +1,21 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const MainWrapper = styled.section`
   display: grid;
-  height: 100vh;
-  width: 100vw;
   grid-template-areas:
     'header header'
     'aside content';
-  grid-template-columns: 3.125rem auto;
-  grid-template-rows: 3.125rem auto;
+  grid-template-columns: 3.125rem 1fr;
+  grid-template-rows: 3.125rem 1fr;
+  height: 100vh;
 
   @media (min-width: 768px) {
-    grid-template-columns: 15.625rem auto;
+    grid-template-columns: 18.125rem 1fr;
+
+    ${({ isMenuOpen }) =>
+      !isMenuOpen &&
+      css`
+        grid-template-columns: 3.125rem 1fr;
+      `}
   }
 `

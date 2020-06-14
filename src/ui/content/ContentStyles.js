@@ -17,9 +17,19 @@ const checkboxStyle = css`
 
 export const MainWrapper = styled.section`
   grid-area: content;
-  margin: 0 1.5rem;
+  padding: 0 1.5rem;
   display: flex;
   flex-direction: column;
+
+  ${({ isMenuOpen }) =>
+    isMenuOpen &&
+    css`
+      opacity: 0.5;
+    `}
+
+  @media (min-width: 768px) {
+    opacity: 1;
+  }
 `
 
 export const Header = styled.div`
