@@ -16,25 +16,51 @@ const isIconSelected = (name, selected_menu_option) =>
 const commonIconStyles = () =>
   css`
     width: 0.9375rem;
+    margin-right: 0.4375rem;
+    padding: 0.3rem;
+  `
+
+const commonListItemTextsStyles = () =>
+  css`
+    ${({ isOpen }) =>
+      !isOpen &&
+      css`
+        display: none;
+      `}
 
     @media (min-width: 768px) {
-      margin-right: 0.4375rem;
+      display: block;
     }
   `
 
 export const MainWrapper = styled.aside`
   grid-area: aside;
-  background: #d0cdcd7d;
   border-right: 0.0625rem solid #e5e5e5;
+  background: #e6e4e4;
+
+  ${({ isOpen }) =>
+    isOpen &&
+    css`
+      position: relative;
+      width: 16.5rem;
+    `}
+
+  @media (min-width: 768px) {
+    position: inherit;
+    width: inherit;
+  }
 `
 
 export const List = styled.ul`
+  padding: 0.625rem 1rem 0 0.6875rem;
   list-style: none;
-  line-height: 2.5rem;
-  padding: 0.625rem 1rem;
 `
 
 export const ListItem = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.9375rem;
   cursor: pointer;
 
   ${({ name, selectedMenuOption }) =>
@@ -43,19 +69,11 @@ export const ListItem = styled.div`
       color: #63b7af;
       font-weight: 700;
     `}
-
-  @media (min-width: 768px) {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
 `
 
 export const ItemTitleWrapper = styled.div`
-  @media (min-width: 768px) {
-    display: flex;
-    align-items: center;
-  }
+  display: flex;
+  align-items: center;
 `
 
 export const MenuIconStyled = styled(MenuIcon)`
@@ -95,18 +113,9 @@ export const CompletedIconStyled = styled(CompletedIcon)`
 `
 
 export const Counter = styled.p`
-  display: none;
-
-  @media (min-width: 768px) {
-    display: block;
-    margin-left: auto;
-  }
+  ${commonListItemTextsStyles()}
 `
 
 export const ItemTitle = styled.p`
-  display: none;
-
-  @media (min-width: 768px) {
-    display: block;
-  }
+  ${commonListItemTextsStyles()}
 `

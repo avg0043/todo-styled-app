@@ -18,6 +18,8 @@ import {
   ItemTitleWrapper,
 } from './AsideStyles'
 
+const isMobile = window.innerWidth < 768
+
 const Aside = ({
   selectedMenuOption,
   pendingTasks,
@@ -25,12 +27,12 @@ const Aside = ({
   importantTasksCount,
   onMenuOptionClick,
 }) => {
-  const [isOpen, setIsOpen] = useState(true)
+  const [isOpen, setIsOpen] = useState(!isMobile)
 
   const handleMenuIconClick = () => setIsOpen(!isOpen)
 
   return (
-    <MainWrapper>
+    <MainWrapper isOpen={isOpen}>
       <MenuIconStyled onClick={handleMenuIconClick} />
       <List>
         <li>
@@ -44,9 +46,9 @@ const Aside = ({
                 name={IMPORTANT_MENU_OPTION}
                 selected_menu_option={selectedMenuOption}
               />
-              <ItemTitle>Important</ItemTitle>
+              <ItemTitle isOpen={isOpen}>Important</ItemTitle>
             </ItemTitleWrapper>
-            <Counter>{importantTasksCount}</Counter>
+            <Counter isOpen={isOpen}>{importantTasksCount}</Counter>
           </ListItem>
         </li>
         <li>
@@ -55,12 +57,14 @@ const Aside = ({
             selectedMenuOption={selectedMenuOption}
             onClick={onMenuOptionClick(TASKS_MENU_OPTION)}
           >
-            <ListIconStyled
-              name={TASKS_MENU_OPTION}
-              selected_menu_option={selectedMenuOption}
-            />
-            <ItemTitle>Tasks</ItemTitle>
-            <Counter>{pendingTasks}</Counter>
+            <ItemTitleWrapper>
+              <ListIconStyled
+                name={TASKS_MENU_OPTION}
+                selected_menu_option={selectedMenuOption}
+              />
+              <ItemTitle isOpen={isOpen}>Tasks</ItemTitle>
+            </ItemTitleWrapper>
+            <Counter isOpen={isOpen}>{pendingTasks}</Counter>
           </ListItem>
         </li>
         <li>
@@ -69,12 +73,14 @@ const Aside = ({
             selectedMenuOption={selectedMenuOption}
             onClick={onMenuOptionClick(COMPLETED_MENU_OPTION)}
           >
-            <CompletedIconStyled
-              name={COMPLETED_MENU_OPTION}
-              selected_menu_option={selectedMenuOption}
-            />
-            <ItemTitle>Completed</ItemTitle>
-            <Counter>{completedTasksCount}</Counter>
+            <ItemTitleWrapper>
+              <CompletedIconStyled
+                name={COMPLETED_MENU_OPTION}
+                selected_menu_option={selectedMenuOption}
+              />
+              <ItemTitle isOpen={isOpen}>Completed</ItemTitle>
+            </ItemTitleWrapper>
+            <Counter isOpen={isOpen}>{completedTasksCount}</Counter>
           </ListItem>
         </li>
       </List>
