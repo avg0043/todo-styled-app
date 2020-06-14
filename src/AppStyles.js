@@ -13,7 +13,7 @@ export const MainWrapper = styled.section`
     grid-template-columns: 18.125rem 1fr;
 
     ${({ isMenuOpen }) =>
-      isMenuOpen === false &&
+      !isMenuOpen &&
       css`
         grid-template-columns: 3.125rem 1fr;
       `}

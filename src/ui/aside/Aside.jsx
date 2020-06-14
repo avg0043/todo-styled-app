@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import {
   IMPORTANT_MENU_OPTION,
@@ -18,27 +18,18 @@ import {
   ItemTitleWrapper,
 } from './AsideStyles'
 
-const isMobile = window.innerWidth < 768
-
 const Aside = ({
   selectedMenuOption,
   pendingTasks,
   completedTasksCount,
   importantTasksCount,
+  isMenuOpen,
   onMenuOptionClick,
   onMenuIconClick,
 }) => {
-  const [isOpen, setIsOpen] = useState(!isMobile)
-
-  const handleMenuIconClick = () => {
-    console.log('hey UI')
-    onMenuIconClick(!isOpen)
-    setIsOpen(!isOpen)
-  }
-
   return (
-    <MainWrapper isOpen={isOpen}>
-      <MenuIconStyled onClick={handleMenuIconClick} />
+    <MainWrapper isMenuOpen={isMenuOpen}>
+      <MenuIconStyled onClick={onMenuIconClick} />
       <List>
         <li>
           <ListItem
@@ -51,9 +42,9 @@ const Aside = ({
                 name={IMPORTANT_MENU_OPTION}
                 selected_menu_option={selectedMenuOption}
               />
-              <ItemTitle isOpen={isOpen}>Important</ItemTitle>
+              <ItemTitle isMenuOpen={isMenuOpen}>Important</ItemTitle>
             </ItemTitleWrapper>
-            <Counter isOpen={isOpen}>{importantTasksCount}</Counter>
+            <Counter isMenuOpen={isMenuOpen}>{importantTasksCount}</Counter>
           </ListItem>
         </li>
         <li>
@@ -67,9 +58,9 @@ const Aside = ({
                 name={TASKS_MENU_OPTION}
                 selected_menu_option={selectedMenuOption}
               />
-              <ItemTitle isOpen={isOpen}>Tasks</ItemTitle>
+              <ItemTitle isMenuOpen={isMenuOpen}>Tasks</ItemTitle>
             </ItemTitleWrapper>
-            <Counter isOpen={isOpen}>{pendingTasks}</Counter>
+            <Counter isMenuOpen={isMenuOpen}>{pendingTasks}</Counter>
           </ListItem>
         </li>
         <li>
@@ -83,9 +74,9 @@ const Aside = ({
                 name={COMPLETED_MENU_OPTION}
                 selected_menu_option={selectedMenuOption}
               />
-              <ItemTitle isOpen={isOpen}>Completed</ItemTitle>
+              <ItemTitle isMenuOpen={isMenuOpen}>Completed</ItemTitle>
             </ItemTitleWrapper>
-            <Counter isOpen={isOpen}>{completedTasksCount}</Counter>
+            <Counter isMenuOpen={isMenuOpen}>{completedTasksCount}</Counter>
           </ListItem>
         </li>
       </List>
@@ -98,6 +89,7 @@ Aside.propTypes = {
   pendingTasks: PropTypes.number.isRequired,
   completedTasksCount: PropTypes.number.isRequired,
   importantTasksCount: PropTypes.number.isRequired,
+  isMenuOpen: PropTypes.bool.isRequired,
   onMenuOptionClick: PropTypes.func.isRequired,
   onMenuIconClick: PropTypes.func.isRequired,
 }

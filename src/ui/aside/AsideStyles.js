@@ -22,8 +22,8 @@ const commonIconStyles = () =>
 
 const commonListItemTextsStyles = () =>
   css`
-    ${({ isOpen }) =>
-      !isOpen &&
+    ${({ isMenuOpen }) =>
+      !isMenuOpen &&
       css`
         display: none;
       `}
@@ -31,8 +31,8 @@ const commonListItemTextsStyles = () =>
     @media (min-width: 768px) {
       display: block;
 
-      ${({ isOpen }) =>
-        !isOpen &&
+      ${({ isMenuOpen }) =>
+        !isMenuOpen &&
         css`
           display: none;
         `}
@@ -44,8 +44,8 @@ export const MainWrapper = styled.aside`
   border-right: 0.0625rem solid #e5e5e5;
   background: #e6e4e4;
 
-  ${({ isOpen }) =>
-    isOpen &&
+  ${({ isMenuOpen }) =>
+    isMenuOpen &&
     css`
       position: relative;
       width: 16.5rem;

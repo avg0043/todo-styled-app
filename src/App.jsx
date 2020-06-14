@@ -9,7 +9,6 @@ import { getIsMenuOpen } from './services/tasks'
 const App = () => {
   const { state } = useContext(TasksContext)
   const isMenuOpen = getIsMenuOpen(state)
-  console.log(isMenuOpen)
 
   return (
     <MainWrapper isMenuOpen={isMenuOpen}>
