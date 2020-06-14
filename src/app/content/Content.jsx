@@ -11,6 +11,7 @@ import {
   getImportantTasks,
   getSearcherValue,
   getSearcherTasks,
+  getIsMenuOpen,
 } from '../../services/tasks'
 import {
   COMPLETED_MENU_OPTION,
@@ -28,6 +29,7 @@ const Content = () => {
   const completedTasks = getCompletedTasks(state)
   const importantTasks = getImportantTasks(state)
   const searcherTasks = getSearcherTasks(state)
+  const isMenuOpen = getIsMenuOpen(state)
   const [taskName, setTaskName] = useState('')
 
   const handleTaskNameChange = event => setTaskName(event.target.value)
@@ -75,6 +77,7 @@ const Content = () => {
       headerTitle={getHeaderTitle()}
       showAddTask={showAddTaskOption()}
       isTasksMenuOptionSelected={selectedMenuOption === TASKS_MENU_OPTION}
+      isMenuOpen={isMenuOpen}
       onTaskNameChange={handleTaskNameChange}
       onTaskRemoveClick={handleRemoveTaskClick}
       onTaskCompleteClick={handleTaskCompleteClick}

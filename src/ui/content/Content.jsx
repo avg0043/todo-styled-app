@@ -27,6 +27,7 @@ const Content = ({
   headerTitle,
   showAddTask,
   isTasksMenuOptionSelected,
+  isMenuOpen,
   onTaskNameChange,
   onTaskRemoveClick,
   onTaskCompleteClick,
@@ -44,7 +45,7 @@ const Content = ({
   }
 
   return (
-    <MainWrapper>
+    <MainWrapper isMenuOpen={isMenuOpen}>
       <Header>
         <HeaderTitle>
           <p>{headerTitle}</p>
@@ -109,6 +110,7 @@ Content.propTypes = {
   headerTitle: PropTypes.string.isRequired,
   showAddTask: PropTypes.bool.isRequired,
   isTasksMenuOptionSelected: PropTypes.bool.isRequired,
+  isMenuOpen: PropTypes.bool.isRequired,
   onTaskNameChange: PropTypes.func.isRequired,
   onTaskRemoveClick: PropTypes.func.isRequired,
   onTaskCompleteClick: PropTypes.func.isRequired,

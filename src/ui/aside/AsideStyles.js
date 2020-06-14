@@ -41,8 +41,11 @@ const commonListItemTextsStyles = () =>
 
 export const MainWrapper = styled.aside`
   grid-area: aside;
+  width: 3.125rem; /* necessary for transition */
+  z-index: 9;
   border-right: 0.0625rem solid #e5e5e5;
   background: #e6e4e4;
+  transition: width 180ms ease;
 
   ${({ isMenuOpen }) =>
     isMenuOpen &&
@@ -52,8 +55,8 @@ export const MainWrapper = styled.aside`
     `}
 
   @media (min-width: 768px) {
-    position: inherit;
-    width: inherit;
+    position: static;
+    width: auto;
   }
 `
 
