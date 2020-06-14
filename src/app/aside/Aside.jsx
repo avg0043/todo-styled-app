@@ -6,6 +6,7 @@ import {
   getSelectedMenuOption,
   setMenuOption,
   getImportantTasks,
+  setIsMenuOpen,
 } from '../../services/tasks'
 import AsideUI from '../../ui/aside/Aside'
 
@@ -19,6 +20,11 @@ const Aside = () => {
   const handleMenuOptionClick = selectedMenuOption => () =>
     dispatch(setMenuOption(selectedMenuOption))
 
+  const handleMenuIconClick = isMenuOpen => {
+    console.log('click: ', isMenuOpen)
+    dispatch(setIsMenuOpen(isMenuOpen))
+  }
+
   return (
     <AsideUI
       selectedMenuOption={selectedMenuOption}
@@ -26,6 +32,7 @@ const Aside = () => {
       completedTasksCount={completedTasks.length}
       importantTasksCount={importantTasks.length}
       onMenuOptionClick={handleMenuOptionClick}
+      onMenuIconClick={handleMenuIconClick}
     />
   )
 }

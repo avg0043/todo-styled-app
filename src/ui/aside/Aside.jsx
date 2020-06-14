@@ -26,10 +26,15 @@ const Aside = ({
   completedTasksCount,
   importantTasksCount,
   onMenuOptionClick,
+  onMenuIconClick,
 }) => {
   const [isOpen, setIsOpen] = useState(!isMobile)
 
-  const handleMenuIconClick = () => setIsOpen(!isOpen)
+  const handleMenuIconClick = () => {
+    console.log('hey UI')
+    onMenuIconClick(!isOpen)
+    setIsOpen(!isOpen)
+  }
 
   return (
     <MainWrapper isOpen={isOpen}>
@@ -94,6 +99,7 @@ Aside.propTypes = {
   completedTasksCount: PropTypes.number.isRequired,
   importantTasksCount: PropTypes.number.isRequired,
   onMenuOptionClick: PropTypes.func.isRequired,
+  onMenuIconClick: PropTypes.func.isRequired,
 }
 
 export default Aside

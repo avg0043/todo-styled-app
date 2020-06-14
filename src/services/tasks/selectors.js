@@ -1,5 +1,10 @@
 import * as R from 'ramda'
-import { TASKS, MENU_SELECTED_OPTION, SEARCHER_VALUE } from './constants'
+import {
+  TASKS,
+  MENU_SELECTED_OPTION,
+  SEARCHER_VALUE,
+  IS_MENU_OPEN,
+} from './constants'
 import isEmptyString from '../../utils/isEmptyString'
 
 const removeAccents = text =>
@@ -10,6 +15,8 @@ const getLowerUnaccentString = text => R.pipe(R.toLower, removeAccents)(text)
 export const getSelectedMenuOption = state => state[MENU_SELECTED_OPTION]
 
 export const getSearcherValue = state => state[SEARCHER_VALUE] || ''
+
+export const getIsMenuOpen = state => state[IS_MENU_OPEN]
 
 export const getPendingTasks = state =>
   state[TASKS].filter(({ completed }) => !completed)

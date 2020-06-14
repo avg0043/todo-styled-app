@@ -1,7 +1,12 @@
 import * as R from 'ramda'
 import { v4 as uuid } from 'uuid'
 import * as actionTypes from './action-types'
-import { TASKS, MENU_SELECTED_OPTION, SEARCHER_VALUE } from './constants'
+import {
+  TASKS,
+  MENU_SELECTED_OPTION,
+  SEARCHER_VALUE,
+  IS_MENU_OPEN,
+} from './constants'
 
 export default (state, { type, payload }) => {
   switch (type) {
@@ -39,6 +44,10 @@ export default (state, { type, payload }) => {
 
     case actionTypes.SET_SEARCHER_VALUE: {
       return R.assocPath([SEARCHER_VALUE], payload.searcherValue, state)
+    }
+
+    case actionTypes.SET_IS_MENU_OPEN: {
+      return R.assocPath([IS_MENU_OPEN], payload.isMenuOpen, state)
     }
 
     default: {

@@ -6,6 +6,9 @@ import { TASKS_MENU_OPTION } from './common/constants'
 
 const TasksContext = createContext()
 
+// TODO: igual habría que inicializar el valor del "isMenuOpen" aquí no ?
+// TODO: y así el "ui/Aside" no usa la variable de state
+
 const TasksContextProvider = ({ children }) => {
   const initialState = {
     [TASKS]: [],

@@ -29,3 +29,8 @@ export const setSearcherValue = searcherValue => ({
   type: actionTypes.SET_SEARCHER_VALUE,
   payload: { searcherValue },
 })
+
+export const setIsMenuOpen = isMenuOpen => ({
+  type: actionTypes.SET_IS_MENU_OPEN,
+  payload: { isMenuOpen },
+})

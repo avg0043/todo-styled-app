@@ -30,6 +30,12 @@ const commonListItemTextsStyles = () =>
 
     @media (min-width: 768px) {
       display: block;
+
+      ${({ isOpen }) =>
+        !isOpen &&
+        css`
+          display: none;
+        `}
     }
   `
 

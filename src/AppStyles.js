@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const MainWrapper = styled.section`
   display: grid;
@@ -11,5 +11,11 @@ export const MainWrapper = styled.section`
 
   @media (min-width: 768px) {
     grid-template-columns: 18.125rem 1fr;
+
+    ${({ isMenuOpen }) =>
+      isMenuOpen === false &&
+      css`
+        grid-template-columns: 3.125rem 1fr;
+      `}
   }
 `
