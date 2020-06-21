@@ -5,19 +5,19 @@ export const addTask = task => ({
   payload: { task },
 })
 
-export const removeTask = id => ({
+export const removeTask = taskId => ({
   type: actionTypes.REMOVE_TASK,
-  payload: { id },
+  payload: { taskId },
 })
 
-export const markCompletedTask = (id, isCompleted) => ({
+export const markCompletedTask = (taskId, isCompleted) => ({
   type: actionTypes.MARK_COMPLETED_TASK,
-  payload: { id, isCompleted },
+  payload: { taskId, isCompleted },
 })
 
-export const markImportantTask = (id, isImportant) => ({
+export const markImportantTask = (taskId, isImportant) => ({
   type: actionTypes.MARK_IMPORTANT_TASK,
-  payload: { id, isImportant },
+  payload: { taskId, isImportant },
 })
 
 export const setMenuOption = menuOption => ({

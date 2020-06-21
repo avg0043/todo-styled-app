@@ -16,13 +16,13 @@ export default (state, { type, payload }) => {
     }
 
     case actionTypes.REMOVE_TASK: {
-      const newTasks = state[TASKS].filter(({ id }) => id !== payload.id)
+      const newTasks = state[TASKS].filter(({ id }) => id !== payload.taskId)
       return R.assocPath([TASKS], newTasks, state)
     }
 
     case actionTypes.MARK_COMPLETED_TASK: {
       const newTasks = state[TASKS].map(task =>
-        task.id === payload.id
+        task.id === payload.taskId
           ? { ...task, completed: payload.isCompleted }
           : task,
       )
@@ -31,7 +31,7 @@ export default (state, { type, payload }) => {
 
     case actionTypes.MARK_IMPORTANT_TASK: {
       const newTasks = state[TASKS].map(task =>
-        task.id === payload.id
+        task.id === payload.taskId
           ? { ...task, important: payload.isImportant }
           : task,
       )
