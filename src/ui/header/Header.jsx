@@ -3,24 +3,27 @@ import PropTypes from 'prop-types'
 import {
   MainWrapper,
   SearcherWrapper,
+  SearcherValue,
   UserInfoWrapper,
   UserTitle,
   UserIconStyled,
   SearcherIconStyled,
+  CloseIconStyled,
 } from './HeaderStyles'
 
-const Header = ({ searcherValue, onSearcherChange }) => {
+const Header = ({ searcherValue, onSearcherChange, onRemoveSearcherValue }) => {
   return (
     <MainWrapper>
       <p>To Do</p>
       <SearcherWrapper>
         <SearcherIconStyled />
-        <input
+        <SearcherValue
           type="text"
           value={searcherValue}
           placeholder="Search any task..."
           onChange={onSearcherChange}
         />
+        {searcherValue && <CloseIconStyled onClick={onRemoveSearcherValue} />}
       </SearcherWrapper>
       <UserInfoWrapper>
         <UserTitle>Álvaro Vázquez</UserTitle>
@@ -33,6 +36,7 @@ const Header = ({ searcherValue, onSearcherChange }) => {
 Header.propTypes = {
   searcherValue: PropTypes.string.isRequired,
   onSearcherChange: PropTypes.func.isRequired,
+  onRemoveSearcherValue: PropTypes.func.isRequired,
 }
 
 export default Header

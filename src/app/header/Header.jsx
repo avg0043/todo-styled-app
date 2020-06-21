@@ -27,10 +27,17 @@ const Header = () => {
     setSearcherValue(newSearcherValue)
   }
 
+  const handleRemoveSearcherValue = () => {
+    dispatch(setSearcherValueAction(''))
+    dispatch(setMenuOption(TASKS_MENU_OPTION))
+    setSearcherValue('')
+  }
+
   return (
     <HeaderUI
       searcherValue={searcherValue}
       onSearcherChange={handleSearcherChange}
+      onRemoveSearcherValue={handleRemoveSearcherValue}
     />
   )
 }
