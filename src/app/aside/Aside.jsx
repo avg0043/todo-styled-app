@@ -20,13 +20,17 @@ const Aside = () => {
   const importantTasks = getImportantTasks(state)
   const isMenuOpen = getIsMenuOpen(state)
 
-  const handleMenuOptionClick = selectedMenuOption => () =>
+  const closeMenuInMobile = () =>
+    isMobileScreen() && isMenuOpen && dispatch(setIsMenuOpen(false))
+
+  const handleMenuOptionClick = selectedMenuOption => () => {
     dispatch(setMenuOption(selectedMenuOption))
+    closeMenuInMobile()
+  }
 
   const handleMenuIconClick = () => dispatch(setIsMenuOpen(!isMenuOpen))
 
-  const handleClickOutside = () =>
-    isMobileScreen() && isMenuOpen && dispatch(setIsMenuOpen(false))
+  const handleClickOutside = () => closeMenuInMobile()
 
   return (
     <AsideUI
