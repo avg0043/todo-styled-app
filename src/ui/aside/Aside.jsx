@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import PropTypes from 'prop-types'
+import { useClickAway } from 'react-use'
 import {
   IMPORTANT_MENU_OPTION,
   TASKS_MENU_OPTION,
@@ -26,9 +27,14 @@ const Aside = ({
   isMenuOpen,
   onMenuOptionClick,
   onMenuIconClick,
+  onClickOutside,
 }) => {
+  const mainWrapperRef = useRef(null)
+
+  useClickAway(mainWrapperRef, () => onClickOutside())
+
   return (
-    <MainWrapper isMenuOpen={isMenuOpen}>
+    <MainWrapper isMenuOpen={isMenuOpen} ref={mainWrapperRef}>
       <MenuIconStyled onClick={onMenuIconClick} />
       <List>
         <li>
@@ -92,6 +98,7 @@ Aside.propTypes = {
   isMenuOpen: PropTypes.bool.isRequired,
   onMenuOptionClick: PropTypes.func.isRequired,
   onMenuIconClick: PropTypes.func.isRequired,
+  onClickOutside: PropTypes.func.isRequired,
 }
 
 export default Aside

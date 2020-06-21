@@ -9,6 +9,7 @@ import {
   setIsMenuOpen,
   getIsMenuOpen,
 } from '../../services/tasks'
+import isMobileScreen from '../../utils/isMobileScreen'
 import AsideUI from '../../ui/aside/Aside'
 
 const Aside = () => {
@@ -24,6 +25,9 @@ const Aside = () => {
 
   const handleMenuIconClick = () => dispatch(setIsMenuOpen(!isMenuOpen))
 
+  const handleClickOutside = () =>
+    isMobileScreen() && isMenuOpen && dispatch(setIsMenuOpen(false))
+
   return (
     <AsideUI
       selectedMenuOption={selectedMenuOption}
@@ -33,6 +37,7 @@ const Aside = () => {
       isMenuOpen={isMenuOpen}
       onMenuOptionClick={handleMenuOptionClick}
       onMenuIconClick={handleMenuIconClick}
+      onClickOutside={handleClickOutside}
     />
   )
 }
