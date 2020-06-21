@@ -5,9 +5,11 @@ import isEmptyString from '../../utils/isEmptyString'
 import {
   MainWrapper,
   Header,
-  HeaderTitle,
+  HeaderTitleWrapper,
+  HeaderTitleText,
   HeaderNewTask,
   HeaderAdd,
+  HeaderTaskName,
   Body,
   Item,
   ItemName,
@@ -19,6 +21,7 @@ import {
   TrashIconStyled,
   InformativeMessageWrapper,
   InformativeMessageTitle,
+  ItemNameText,
 } from './ContentStyles'
 
 const Content = ({
@@ -47,13 +50,13 @@ const Content = ({
   return (
     <MainWrapper isMenuOpen={isMenuOpen}>
       <Header>
-        <HeaderTitle>
-          <p>{headerTitle}</p>
-        </HeaderTitle>
+        <HeaderTitleWrapper>
+          <HeaderTitleText>{headerTitle}</HeaderTitleText>
+        </HeaderTitleWrapper>
         {showAddTask && (
           <form onSubmit={onFormSubmit}>
             <HeaderNewTask>
-              <input
+              <HeaderTaskName
                 type="text"
                 value={taskName}
                 placeholder="Type your new task"
@@ -75,7 +78,7 @@ const Content = ({
               ) : (
                 <CheckboxIconStyled onClick={handleTaskChecked(id, true)} />
               )}
-              <p>{name}</p>
+              <ItemNameText>{name}</ItemNameText>
             </ItemName>
             <ItemActions>
               {important ? (

@@ -36,17 +36,27 @@ export const Header = styled.div`
   margin: 0.9375rem 0;
 `
 
-export const HeaderTitle = styled.div`
+export const HeaderTitleWrapper = styled.div`
   font-size: 1.25rem;
   color: #63b7af;
   margin-bottom: 1.175rem;
   font-weight: 800;
 `
 
+export const HeaderTitleText = styled.p`
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow-x: hidden;
+  width: 69vw;
+`
+
 export const HeaderNewTask = styled.div`
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap;
+`
+
+export const HeaderTaskName = styled.input`
+  flex-grow: 1;
 `
 
 export const HeaderAdd = styled.button`
@@ -114,12 +124,23 @@ export const Item = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
   min-height: 3.25rem;
 `
 
 export const ItemName = styled.div`
   display: flex;
   align-items: center;
+`
+
+export const ItemNameText = styled.p`
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  width: 53vw;
+
+  @media (min-width: 768px) {
+    width: 72vw;
+  }
 `
 
 export const InformativeMessageWrapper = styled.div`
