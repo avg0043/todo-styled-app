@@ -47,7 +47,6 @@ export const HeaderTitleText = styled.p`
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow-x: hidden;
-  width: 69vw;
 `
 
 export const HeaderNewTask = styled.div`
@@ -136,11 +135,6 @@ export const ItemName = styled.div`
 export const ItemNameText = styled.p`
   overflow-wrap: break-word;
   word-wrap: break-word;
-  width: 53vw;
-
-  @media (min-width: 768px) {
-    width: 72vw;
-  }
 `
 
 export const InformativeMessageWrapper = styled.div`
