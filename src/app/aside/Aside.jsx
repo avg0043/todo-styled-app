@@ -4,10 +4,10 @@ import {
   getPendingTasks,
   getCompletedTasks,
   getSelectedMenuOption,
-  setMenuOption,
   getImportantTasks,
-  setIsMenuOpen,
   getIsMenuOpen,
+  setMenuOption,
+  setIsMenuOpen,
 } from '../../services/tasks'
 import isMobileScreen from '../../utils/isMobileScreen'
 import AsideUI from '../../ui/aside/Aside'

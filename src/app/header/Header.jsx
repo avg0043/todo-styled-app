@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { TasksContext } from '../../TasksProvider'
 import {
   setSearcherValue as setSearcherValueAction,
@@ -13,6 +13,16 @@ const Header = () => {
   const { state, dispatch } = useContext(TasksContext)
   const selectedMenuOption = getSelectedMenuOption(state)
   const [searcherValue, setSearcherValue] = useState('')
+
+  useEffect(() => {
+    if (
+      selectedMenuOption !== NONE_MENU_OPTION &&
+      !isEmptyString(searcherValue)
+    ) {
+      setSearcherValue('')
+      dispatch(setSearcherValueAction(''))
+    }
+  }, [dispatch, searcherValue, selectedMenuOption])
 
   const handleSearcherChange = event => {
     const newSearcherValue = event.target.value
