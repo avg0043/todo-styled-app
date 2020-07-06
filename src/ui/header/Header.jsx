@@ -9,12 +9,18 @@ import {
   UserIconStyled,
   SearcherIconStyled,
   CloseIconStyled,
+  Title,
 } from './HeaderStyles'
 
-const Header = ({ searcherValue, onSearcherChange, onRemoveSearcherValue }) => {
+const Header = ({
+  searcherValue,
+  onSearcherChange,
+  onRemoveSearcherValue,
+  onTitleClick,
+}) => {
   return (
     <MainWrapper>
-      <p>To Do</p>
+      <Title onClick={onTitleClick}>To Do</Title>
       <SearcherWrapper>
         <SearcherIconStyled />
         <SearcherValue
@@ -37,6 +43,7 @@ Header.propTypes = {
   searcherValue: PropTypes.string.isRequired,
   onSearcherChange: PropTypes.func.isRequired,
   onRemoveSearcherValue: PropTypes.func.isRequired,
+  onTitleClick: PropTypes.func.isRequired,
 }
 
 export default Header

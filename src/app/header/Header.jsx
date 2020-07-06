@@ -24,30 +24,30 @@ const Header = () => {
     }
   }, [dispatch, searcherValue, selectedMenuOption])
 
+  const resetSearcherAndMenu = () => {
+    setSearcherValue('')
+    dispatch(setSearcherValueAction(''))
+    dispatch(setMenuOption(TASKS_MENU_OPTION))
+  }
+
   const handleSearcherChange = event => {
     const newSearcherValue = event.target.value
 
+    setSearcherValue(newSearcherValue)
     dispatch(setSearcherValueAction(newSearcherValue))
 
     if (isEmptyString(newSearcherValue))
       dispatch(setMenuOption(TASKS_MENU_OPTION))
     else if (selectedMenuOption !== NONE_MENU_OPTION)
       dispatch(setMenuOption(NONE_MENU_OPTION))
-
-    setSearcherValue(newSearcherValue)
-  }
-
-  const handleRemoveSearcherValue = () => {
-    dispatch(setSearcherValueAction(''))
-    dispatch(setMenuOption(TASKS_MENU_OPTION))
-    setSearcherValue('')
   }
 
   return (
     <HeaderUI
       searcherValue={searcherValue}
       onSearcherChange={handleSearcherChange}
-      onRemoveSearcherValue={handleRemoveSearcherValue}
+      onRemoveSearcherValue={resetSearcherAndMenu}
+      onTitleClick={resetSearcherAndMenu}
     />
   )
 }

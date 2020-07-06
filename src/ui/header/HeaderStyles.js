@@ -13,6 +13,10 @@ export const MainWrapper = styled.header`
   padding: 0 0.625rem;
 `
 
+export const Title = styled.p`
+  cursor: pointer;
+`
+
 export const SearcherWrapper = styled.div`
   display: flex;
   align-items: center;
