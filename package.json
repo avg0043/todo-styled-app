@@ -17,11 +17,15 @@
     "styled-components": "^5.0.1",
     "uuid": "^8.0.0"
   },
+  "devDependencies": {
+    "@babel/compat-data": "7.8.0"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "coverage": "yarn test --watchAll=false --coverage"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -37,5 +41,23 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "jest": {
+    "coverageReporters": [
+      "lcov",
+      "text",
+      "html"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 85,
+        "functions": 85,
+        "lines": 85,
+        "statements": 85
+      }
+    }
   }
 }
