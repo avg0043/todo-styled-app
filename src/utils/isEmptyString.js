@@ -1,3 +1,5 @@
 import * as R from 'ramda'
 
-export default text => R.isEmpty(text.replace(/\s/g, ''))
+const isEmptyString = text => R.isEmpty(text.replace(/\s/g, ''))
+
+export default isEmptyString
