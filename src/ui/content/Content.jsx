@@ -57,6 +57,7 @@ const Content = ({
           <form onSubmit={onFormSubmit}>
             <HeaderNewTask>
               <HeaderTaskName
+                aria-label="addTask"
                 type="text"
                 value={taskName}
                 placeholder="Type your new task"
@@ -76,19 +77,29 @@ const Content = ({
                   onClick={handleTaskChecked(id, false)}
                 />
               ) : (
-                <CheckboxIconStyled onClick={handleTaskChecked(id, true)} />
+                <CheckboxIconStyled
+                  data-testid="checkboxIcon"
+                  onClick={handleTaskChecked(id, true)}
+                />
               )}
               <ItemNameText>{name}</ItemNameText>
             </ItemName>
             <ItemActions>
               {important ? (
                 <StarFilledIconStyled
+                  data-testid="starFilledIcon"
                   onClick={onTaskImportantClick(id, false)}
                 />
               ) : (
-                <StarIconStyled onClick={onTaskImportantClick(id, true)} />
+                <StarIconStyled
+                  data-testid="starIcon"
+                  onClick={onTaskImportantClick(id, true)}
+                />
               )}
-              <TrashIconStyled onClick={onTaskRemoveClick(id)} />
+              <TrashIconStyled
+                data-testid="trashIcon"
+                onClick={onTaskRemoveClick(id)}
+              />
             </ItemActions>
           </Item>
         ))}

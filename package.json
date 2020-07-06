@@ -5,7 +5,7 @@
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.1",
-    "@testing-library/user-event": "^7.2.1",
+    "@testing-library/user-event": "^12.0.11",
     "normalize.css": "^8.0.1",
     "prop-types": "^15.7.2",
     "ramda": "^0.27.0",
@@ -18,7 +18,8 @@
     "uuid": "^8.0.0"
   },
   "devDependencies": {
-    "@babel/compat-data": "7.8.0"
+    "@babel/compat-data": "7.8.0",
+    "@testing-library/dom": "^7.20.0"
   },
   "scripts": {
     "start": "react-scripts start",
