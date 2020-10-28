@@ -2,6 +2,7 @@
   "name": "todo-styled-app",
   "version": "0.1.0",
   "private": true,
+  "homepage": "./",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.1",
@@ -26,7 +27,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "coverage": "yarn test --watchAll=false --coverage"
+    "coverage": "yarn test --watchAll=false --coverage",
+    "docs": "rm -rf docs && react-scripts build && mv build docs"
   },
   "eslintConfig": {
     "extends": "react-app"
