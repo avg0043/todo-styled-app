@@ -1,0 +1,4 @@
+export const IMPORTANT_MENU_OPTION = 'IMPORTANT'
+export const TASKS_MENU_OPTION = 'TASKS'
+export const COMPLETED_MENU_OPTION = 'COMPLETED'
+export const NONE_MENU_OPTION = 'NONE'
