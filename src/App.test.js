@@ -1,9 +1,9 @@
 import React from 'react'
-import { render } from '@testing-library/react'
+import { screen } from '@testing-library/react'
 import App from './App'
+import renderWithProviders from './utils-tests/renderWithProviders'
 
-test('renders main title', () => {
-  const { getByText } = render(<App />)
-  const title = getByText(/hello world/i)
-  expect(title).toBeInTheDocument()
+test('checks the main title of the app', () => {
+  renderWithProviders(<App />)
+  expect(screen.getByText(/To Do/)).toBeVisible()
 })

@@ -24,12 +24,18 @@ const Header = ({
       <SearcherWrapper>
         <SearcherIconStyled />
         <SearcherValue
+          aria-label="searcher"
           type="text"
           value={searcherValue}
           placeholder="Search any task..."
           onChange={onSearcherChange}
         />
-        {searcherValue && <CloseIconStyled onClick={onRemoveSearcherValue} />}
+        {searcherValue && (
+          <CloseIconStyled
+            data-testid="closeIcon"
+            onClick={onRemoveSearcherValue}
+          />
+        )}
       </SearcherWrapper>
       <UserInfoWrapper>
         <UserTitle>Álvaro Vázquez</UserTitle>
